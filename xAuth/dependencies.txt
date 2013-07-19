@@ -1,0 +1,4 @@
+- angular.js  >1.0.7
+- angular-cookies.js (not currently used but will be soon as full support becomes available.)
+- jquery >1.9.1 (until angularjs cookies are fully implemented)
+- CryptoJS hmac-sha1 and enc-base64.                                           - jquery.cookie.js    
