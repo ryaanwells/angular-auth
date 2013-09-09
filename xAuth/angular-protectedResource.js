@@ -251,14 +251,14 @@ angular.module('protectedResource', ['ngCookies'])
 				    .HmacSHA1(base,consumer_secret+"&")
 				    .toString(CryptoJS.enc.Base64));
       params["oauth_signature"] = signature;
-      var authHead = makeAuthorizationHeader(params,signature);
+      var authHead = makeAuthorizationHeader(params);
+
+      authHead += ', x_auth_mode="client_auth", x_auth_password="'+percentEncode(password)+'", x_auth_username="'+percentEncode(username)+'"'
       
       var promise = $http({
 	method:"POST",
-	headers:{'Authorization':authHead,'Content-Type':'application/x-www-form-urlencoded'
-		},
-	url:accessTokenURL,
-	data:"x_auth_username="+username+"&x_auth_password="+password+"&x_auth_mode=client_auth"
+	headers:{'Authorization':authHead},
+	url:accessTokenURL
       });
       return promise
     }
@@ -288,7 +288,7 @@ angular.module('protectedResource', ['ngCookies'])
 				    .HmacSHA1(base,consumer_secret+"&"+keys["oauth_token_secret"])
 				    .toString(CryptoJS.enc.Base64));
       start["oauth_signature"]=signature;
-      var authHead = makeRequestHeader(start,signature);
+      var authHead = makeRequestHeader(start);
       var httpConf = {method:method,
 		      url:config.url,
 		      headers:{'Authorization':authHead, 
