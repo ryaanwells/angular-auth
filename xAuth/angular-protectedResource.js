@@ -170,12 +170,15 @@ angular.module('protectedResource', ['ngCookies'])
      */
     function makeAuthorizationHeader(obj){
       var sig = "OAuth ";
-      sig +="oauth_nonce=\""+obj["oauth_nonce"] + "\", ";
-      sig +="oauth_signature_method=\""+obj["oauth_signature_method"] + "\", ";
-      sig +="oauth_timestamp=\""+obj["oauth_timestamp"] + "\", ";
-      sig +="oauth_consumer_key=\""+obj["oauth_consumer_key"] + "\", ";
-      sig +="oauth_signature=\""+obj["oauth_signature"] + "\", ";
-      sig +="oauth_version=\""+obj["oauth_version"] +"\"";
+      sig +="oauth_nonce=\"" + obj["oauth_nonce"] + "\", ";
+      sig +="oauth_signature_method=\"" + obj["oauth_signature_method"] + "\", ";
+      sig +="oauth_timestamp=\"" + obj["oauth_timestamp"] + "\", ";
+      sig +="oauth_consumer_key=\"" + obj["oauth_consumer_key"] + "\", ";
+      sig +="oauth_signature=\"" + obj["oauth_signature"] + "\", ";
+      sig +="oauth_version=\"" + obj["oauth_version"] + "\", ";
+      sig +="x_auth_mode=\"" + obj["x_auth_mode"] + "\", ";
+      sig +="x_auth_password=\"" + obj["x_auth_password"] + "\", ";
+      sig +="x_auth_username=\"" + obj["x_auth_username"] + "\"";
       return sig;
     }
     
@@ -253,8 +256,6 @@ angular.module('protectedResource', ['ngCookies'])
       params["oauth_signature"] = signature;
       var authHead = makeAuthorizationHeader(params);
 
-      authHead += ', x_auth_mode="client_auth", x_auth_password="'+percentEncode(password)+'", x_auth_username="'+percentEncode(username)+'"'
-      
       var promise = $http({
 	method:"POST",
 	headers:{'Authorization':authHead},
