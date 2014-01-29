@@ -1,0 +1,22 @@
+{
+  "title": "Angular Auth",
+  "name": "angular-auth",
+  "description": "AngularJS implementation of authentication methods that wrap the $http module",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ryan Wells",
+    "email": "ryaanwells@googlemail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryaanwells/angular-auth.git"
+  },
+  "engines": {
+    "npm": "~1.2.24",
+    "node": "~0.10.9"
+  },
+  "devDependencies":{
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.2.0"
+  }
+}
